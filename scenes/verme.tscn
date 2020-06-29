@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/verme.gd" type="Script" id=1]
+[ext_resource path="res://art/test.png" type="Texture" id=2]
+[ext_resource path="res://sound/narration.wav" type="AudioStream" id=3]
+[ext_resource path="res://sound/intense.wav" type="AudioStream" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 3.05346
+
+[sub_resource type="Animation" id=2]
+resource_name = "zoomout"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.15, 0.15 ), Vector2( 1.5, 1.5 ) ]
+}
+
+[node name="verme" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.15, 0.15 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
+
+[node name="shape" type="CollisionShape2D" parent="." groups=[
+"PLAYER",
+]]
+shape = SubResource( 1 )
+
+[node name="HUD" type="Node2D" parent="."]
+z_index = 1
+
+[node name="startPanel" type="Panel" parent="HUD"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0.729412 )
+margin_left = -80.0
+margin_top = -59.0
+margin_right = 82.0
+margin_bottom = 60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="HUD/startPanel"]
+margin_left = 67.5
+margin_top = 84.0
+margin_right = 115.5
+margin_bottom = 108.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="atenção" type="Label" parent="HUD/startPanel"]
+margin_left = 19.0
+margin_top = 25.5
+margin_right = 263.0
+margin_bottom = 73.5
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Atenção: ative o som!
+
+Use as setas do teclado para controlar"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animation" type="AnimationPlayer" parent="."]
+anims/zoomout = SubResource( 2 )
+
+[node name="narration" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 2.0
+autoplay = true
+
+[node name="tense" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 10.0
+[connection signal="pressed" from="HUD/startPanel/Button" to="." method="_on_Button_pressed"]
+[connection signal="animation_finished" from="animation" to="." method="_on_animation_finished"]
+[connection signal="finished" from="narration" to="." method="_on_narration_finished"]

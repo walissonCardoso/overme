@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://art/background2.png" type="Texture" id=1]
+
+[node name="background" type="KinematicBody2D"]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="sprite" type="Sprite" parent="."]
+modulate = Color( 0.239216, 0.239216, 0.239216, 1 )
+position = Vector2( 430, 524 )
+texture = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -73.4919, 473.143 )
+polygon = PoolVector2Array( 493.234, -341.819, 699.257, -312.906, 790.661, -267.715, 886.732, -172.939, 932.141, -55.2137, 943.913, 57.4664, 892.6, 92.6738, 1690.08, 599.229, 1816.64, -888.486 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2( 188.573, 395.107 )
+polygon = PoolVector2Array( 386.988, -276.456, 158.988, -258.817, 32.996, -204.64, -66.5378, -144.164, -115.823, -106.942, -168.555, -50.0133, -198.966, 68.2152, -194.601, 115.174, -173.73, 185.728, -123.276, 220.205, -70.2995, 224.409, 25.5627, 225.25, 15.4719, 283.272, -648.586, 934.363, -1536.71, -485.507, -100.729, -1247.77, 1535.12, -807.948 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 867.936, 493.5, 861.134, 544.905, 819.815, 567.154, 830.41, 664.624, 787.169, 771.031, 739.604, 809.265, 662.987, 803.92, 605.969, 768.284, 525.472, 811.52, 440.703, 700.536, 358.299, 730.866, 235.355, 711.267, 210.41, 679.194, 213.974, 620.395, -578.303, 1402.1, 1567.84, 1421.2, 1504.99, 855.48 )
